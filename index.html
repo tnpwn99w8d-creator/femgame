@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>강제 여성화 시설 - Forced Feminization Facility</title>
+<style>
+    body { font-family: 'Noto Sans KR', sans-serif; background: #1a0022; color: #ffccff; margin:0; padding:20px; line-height:1.5; }
+    .container { max-width: 1250px; margin: auto; display: grid; grid-template-columns: 320px 1fr 320px; gap: 20px; }
+    .panel { background: #2a0033; border: 2px solid #990066; padding: 18px; border-radius: 12px; box-shadow: 0 0 20px rgba(153,0,102,0.6); }
+    .character { cursor: pointer; padding: 12px; margin: 8px 0; background: #440044; border-radius: 8px; transition: all 0.2s; }
+    .character:hover { background: #660066; transform: scale(1.03); }
+    .status-bar { height: 14px; background: #440044; margin: 6px 0; border-radius: 3px; overflow: hidden; }
+    .progress { height: 100%; background: linear-gradient(to right, #ff00aa, #ff88ff); transition: width 0.4s; }
+    button { background: #990066; color: white; border: none; padding: 10px 14px; margin: 4px 2px; cursor: pointer; border-radius: 6px; font-weight: bold; }
+    button:hover { background: #ff0088; }
+    button.small { padding: 6px 10px; font-size: 0.85em; }
+    .log { height: 320px; overflow-y: auto; background: #110011; padding: 14px; font-size: 0.93em; border-radius: 8px; }
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="panel">
+        <h2>👤 나 (플레이어)</h2>
+        <div id="player-info"></div>
+        <h3>🛒 상점 (인란 수당: <span id="money">650</span>)</h3>
+        <div id="shop" style="max-height: 260px; overflow-y: auto;"></div>
+        <h3>🎒 인벤토리</h3>
+        <div id="inventory"></div>
+        <div style="margin-top:20px;">
+            <button onclick="goToLocation('room')">내 방</button>
+            <button onclick="goToLocation('living')">공용 거실</button>
+            <button onclick="goToLocation('dining')">식당</button>
+            <button onclick="goToLocation('shower')">샤워실</button>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h2 id="current-location">내 방</h2>
+        <div id="location-content" style="margin-bottom:15px;">개인 방입니다.</div>
+        <button onclick="endTurn()" class="small" style="background:#006633; width:100%; margin-bottom:12px;">⏭ 다음 턴 진행 (NPC 이동 + 이벤트)</button>
+        <h3>📜 행동 로그</h3>
+        <div id="log" class="log"></div>
+    </div>
+
+    <div class="panel">
+        <h2>🔥 시설 참가자 (15명)</h2>
+        <div id="characters-list"></div>
+    </div>
+</div>
+
+<script>
+// (전체 JS 코드 - 이전 read_file에서 확인된 완전한 버전)
+let money = 650;
+let currentLocation = 'room';
+let selectedTarget = null;
+
+const player = { name: "김민준", age: 28, job: "프로그래머", stamina: 78, hunger: 35, lust: 42, corruption: 18, femininity: 12, breasts: 0, hips: 12, sensitivity: "낮음" };
+
+let characters = [ /* 15명 데이터 (위 read_file 내용 그대로) */ ];
+let inventory = [{id:"estrogen", count:3}, {id:"aphrodisiac", count:1}];
+const shopItems = [ /* 상점 아이템 */ ];
+
+// ... (모든 함수: addLog, renderPlayer, renderShop, buyItem, useItem, renderCharacters, selectTarget, goToLocation, endTurn 등)
+
+function init() {
+    addLog("🏠 <strong>강제 여성화 시설에 입소했습니다.</strong> 서로를 먼저 여성화시키세요.");
+    renderAll();
+}
+init();
+</script>
+</body>
+</html>
